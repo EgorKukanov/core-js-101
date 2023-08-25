@@ -103,7 +103,7 @@ function chainPromises(/* array, action */) {
   /* return array.reduce((accumulatorPromise, currentPromise) => accumulatorPromise
     .then((accumulator) => currentPromise
       .then((value) => action(accumulator, value))
-      .catch(() => accumulator)), Promise.resolve()); */
+      .catch(() => accumulator)), Promise.resolve(0)); */
 }
 
 module.exports = {
