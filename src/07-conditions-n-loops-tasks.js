@@ -256,7 +256,8 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(num) {
-  return parseFloat(num.toString().split('').reverse().join(''));
+  const reverseNumbers = parseFloat(num.toString().split('').reverse().join(''), 10);
+  return reverseNumbers;
 }
 
 
@@ -298,8 +299,12 @@ function isCreditCardNumber(/* ccn */) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  if (num < 10) {
+    return num;
+  }
+  const sum = num.toString().split('').reduce((acc, curr) => acc + parseFloat(curr, 10), 0);
+  return sum < 10 ? sum : getDigitalRoot(sum);
 }
 
 
@@ -324,8 +329,25 @@ function getDigitalRoot(/* num */) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+function isBracketsBalanced(str) {
+  const map = {
+    '(': ')',
+    '[': ']',
+    '{': '}',
+    '<': '>',
+  };
+  const closing = Object.values(map);
+  const stack = [];
+  let balanced = true;
+
+  str.split('').forEach((char) => {
+    if (map[char]) {
+      stack.push(char);
+    } else if (closing.includes(char) && char !== map[stack.pop()]) {
+      balanced = false;
+    }
+  });
+  return balanced && stack.length === 0;
 }
 
 

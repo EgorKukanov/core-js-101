@@ -98,12 +98,11 @@ function getFastestPromise(array) {
  *    });
  *
  */
-function chainPromises(/* array, action */) {
-  throw new Error('Not implemented');
-  /* return array.reduce((accumulatorPromise, currentPromise) => accumulatorPromise
+function chainPromises(array, action) {
+  return array.reduce((accumulatorPromise, currentPromise) => accumulatorPromise
     .then((accumulator) => currentPromise
       .then((value) => action(accumulator, value))
-      .catch(() => accumulator)), Promise.resolve(0)); */
+      .catch(() => accumulator)), Promise.resolve(0));
 }
 
 module.exports = {
